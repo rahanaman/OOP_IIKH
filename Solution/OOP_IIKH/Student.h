@@ -13,8 +13,8 @@ private:
 public: 
 	///Getter Method
 
-	std::string GetName()const {return name; }
-	std::string GetID()const { return id; };
+	std::string GetName()const { return name; }
+	std::string GetID()const { return id; }
 	std::string GetAdmYear()const { return admYear; }
 	std::string GetDeptName()const { return deptName; }
 	std::string GetTel()const { return tel; }

@@ -4,25 +4,42 @@
 #include<string>
 #include "Student.h"
 #include "DataBase.h"
-
-int main() {
-    StudentDB db;
-
-
-    db.Add("2");
-    db.Add("4");
-    db.Add("5");
-    db.Add("1");
-    db.Add("3");
-
-    db.array();
+#include "txtReader.h"
+#include "Program.h"
+#include "Error.h"
 
 
-    db.SortByID();
 
-    db.array();
-   
 
-    std::cout << std::endl;
+
+
+void aa() {
+    
     
 }
+
+int main(int argc, char* argv[]) {
+
+    //Program program(argv[1]);
+    //program.Execute();
+    
+
+    std::string s = "\"adafdaf\"aksjhfkjadsh\"kfjh\"";
+    for (int i = 0; i < s.size(); ++i) {
+        if (s.at(i) == '\"') {
+            s.insert(i++, "\"");
+        }
+    }
+
+    std::cout << s;
+
+    txtReader t("a.txt");
+
+
+
+    //End();
+
+
+}
+
+
