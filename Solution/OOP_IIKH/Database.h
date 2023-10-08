@@ -8,33 +8,59 @@
 
 class StudentDB {
 private:
-	
+	//studentDB
+	std::vector<Student> studentDB;
+	//DB index
+	std::vector<size_t> DBindex;
 
-	
-	
+
+
+
+	/// Sorting Option
+
 	class SortOption_ID {
 	public:
 		const StudentDB& DB;
 
 		SortOption_ID(const StudentDB& db) :DB(db) {}
-
-		bool operator()(const size_t& i1, const size_t& i2) {
-			return DB.studentDB[i1].GetID() < DB.studentDB[i2].GetID();
-		}
+		bool operator()(const size_t& i1, const size_t& i2);
 
 	};
+
+	class SortingOption_Name {
+		const StudentDB& DB;
+
+		SortingOption_Name(const StudentDB& db): DB(db) {}
+		bool operator()(const size_t& i1, const size_t& i2);
+	};
+
+	class SortingOption_AdmYear {
+		const StudentDB& DB;
+
+		SortingOption_AdmYear(const StudentDB& db) : DB(db) {}
+		bool operator()(const size_t& i1, const size_t& i2);
+	};
+
+	class SortingOption_DeptName {
+		const StudentDB& DB;
+		SortingOption_DeptName(const StudentDB& db) : DB(db) {}
+		bool operator()(const size_t& i1, const size_t& i2);
+	};
+
+
+
 
 
 public:
 
-	//studentDB
-	std::vector<Student> studentDB;
+	void Insert(Student& s);
 
-	//DB index
-	std::vector<size_t> DBindex;
+	void SearchByName(std::string& s);
+	
 
 	void Add(std::string s) {
 		Student *db = new Student(s);
+		
 		DBindex.push_back(studentDB.size());
 		studentDB.push_back(*db);
 	}
