@@ -13,11 +13,11 @@ private:
 public: 
 	///Getter Method
 
-	std::string GetName();
+	std::string GetName()const {return name; }
 	std::string GetID()const { return id; };
-	std::string GetAdmYear();
-	std::string GetDeptName();
-	std::string GetTel();
+	std::string GetAdmYear()const { return admYear; }
+	std::string GetDeptName()const { return deptName; }
+	std::string GetTel()const { return tel; }
 
 	//constructor
 
