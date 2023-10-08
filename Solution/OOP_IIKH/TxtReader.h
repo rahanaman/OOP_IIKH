@@ -16,30 +16,31 @@ private:
 		if (file.is_open()) {
 			Read();
 		}
-
 	}
 
-	void Read() {
-		std::string student;
+	std::vector<Student> Read() {
+		std::vector<Student> v;
+		std::string str;
 		while (!file.eof()) {
-			std::getline(file, student);
-			std::sregex_token_iterator it(student.begin(), student.end(), SPLIT_ATT, -1), end;
+			std::getline(file, str);
+			std::sregex_token_iterator it(str.begin(), str.end(), SPLIT_ATT, -1), end;
 			std::vector<std::string> atts = std::vector<std::string>(it, end);
 
-
-			for (int i = 0; i < atts.size(); ++i) {
-				std::cout << atts[i] << "///";
-			}
-			std::cout << std::endl << student;
+			Student *student = new Student(atts[0], atts[1], atts[2], atts[3], atts[4]);
+			v.push_back(*student);
 		}
 		file.close();
+		return v;
 	}
+
+	std::vector<std::string> ParseString() {
+
+	}
+
 
 	
 
-	void Write() {
-
-	}
+	
 
 
 public:

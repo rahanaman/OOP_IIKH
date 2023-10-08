@@ -77,6 +77,14 @@ private:
 
 public:
 
+	StudentDB() {
+
+	}
+	/// setter method
+	void SetDB(std::vector<Student> db) {
+		this->studentDB = db;
+	}
+
 	void Insert(Student& s);
 
 	void SearchByName(std::string& s);

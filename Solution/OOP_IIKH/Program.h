@@ -1,15 +1,21 @@
 #pragma once
 #include<iostream>
+
+#include"txtReader.h";
+#include"Database.h"
+
 class Program {
 private:
 	std::string filepath;
+	StudentDB db;
+	txtReader txtReader;
+	
 public:
-	Program(char* filepath):filepath(filepath) {
-		std::cout << filepath;
-	}
+
+	Program(std::string s):filepath(s),txtReader(s),db(){}
 
 	void Execute() {
-
+		
 	}
 
 	void EndProgram() {

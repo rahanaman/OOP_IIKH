@@ -9,6 +9,14 @@ private:
 	std::string deptName;
 	std::string tel;
 
+	std::string RefineString(std::string string) {
+		for (int i = 0; i < string.size(); ++i) {
+			if (string.at(i) == '\"') {
+				string.insert(i++, "\"");
+			}
+		}
+		return string;
+	}
 
 public: 
 	///Getter Method
@@ -25,6 +33,18 @@ public:
 
 	Student(std::string name, std::string is, std::string admYear, std::string deptName, std::string tel)
 		:name(name),id(id), admYear(admYear), deptName(deptName),tel(tel){ }
+
+	std::string IntoString() {
+		std::string str;
+		str += "\"" + RefineString(GetName()) + "\"";
+		str += "\"" + RefineString(GetID()) + "\"";
+		str += "\"" + RefineString(GetAdmYear()) + "\"";
+		str += "\"" + RefineString(GetDeptName()) + "\"";
+		str += "\"" + RefineString(GetTel()) + "\"";
+		str += "\n";
+
+		return str;
+	}
 
 	//destructor;
 	//~Student();
