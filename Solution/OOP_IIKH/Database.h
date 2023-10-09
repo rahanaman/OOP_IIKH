@@ -5,6 +5,29 @@
 #include<algorithm>
 
 #include "Student.h"
+#include "Error.h"
+
+class DataBaseError : public Error {
+public:
+	void ErrorMessage() {
+
+		switch (errorID) {
+			//ID repetition Error
+		case 0:
+			std::cout << "Error : already inserted"<<std::endl;
+			break;
+			//Invalid Arrtibute Error
+		case 1:
+			std::cout << "Error : Invalid Error"<<std::endl;
+		default:
+			break;
+		}
+		
+	}
+};
+
+
+
 
 class StudentDB {
 private:
@@ -13,6 +36,7 @@ private:
 	//DB index
 	std::vector<size_t> DBindex;
 
+	void CheckValidity();
 
 
 
@@ -53,9 +77,23 @@ private:
 
 public:
 
+	StudentDB() {
+
+	}
+	/// setter method
+	void SetDB(std::vector<Student> db) {
+		this->studentDB = db;
+	}
+
 	void Insert(Student& s);
 
 	void SearchByName(std::string& s);
+	void SearchByID(std::string& s);
+	void SearchByAdmYear(std::string& s);
+	void SearchByDeptName(std::string& s);
+	
+	void Save();
+
 	
 
 	void Add(std::string s) {

@@ -10,3 +10,9 @@ bool StudentDB::SortOption_ID::operator() (const size_t& i1, const size_t& i2){
 bool StudentDB::SortingOption_Name::operator()(const size_t& i1, const size_t& i2) {
 	return DB.studentDB[i1].GetName() < DB.studentDB[i2].GetName();
 }
+
+void StudentDB::Insert(Student& s){
+	
+}
+
+
