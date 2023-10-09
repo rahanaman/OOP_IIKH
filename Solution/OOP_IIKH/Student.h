@@ -24,8 +24,8 @@ public:
 
 	Student(std::string name) :name(name) {}
 
-	Student(std::string name, std::string id, std::string deptName, std::string birthYear,  std::string tel)
-		:name(name),id(id), birthYear(birthYear), deptName(deptName),tel(tel){ }
+	Student(std::string name, std::string id,  std::string birthYear, std::string deptName, std::string tel)
+		:name(name),id(id), deptName(deptName), birthYear(birthYear), tel(tel){ }
 
 
 	//destructor;

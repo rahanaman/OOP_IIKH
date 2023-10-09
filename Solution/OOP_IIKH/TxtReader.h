@@ -19,14 +19,15 @@ private:
 		std::string str;
 		while (!file.eof()) {
 			std::getline(file, str);
-
+			if (str == "") break;
 			std::vector<std::string> atts = ParseString(str);
 			
-			std::cout << atts[0] << atts[1] << atts[2] << atts[3] << atts[4];
 			Student* student = new Student(atts[0], atts[1], atts[2], atts[3], atts[4]);
-			DB.Insert(*student);
+			DB.Insert(student);
 		}
 		file.close();
+		//DB.SortByName();
+
 	}
 	
 

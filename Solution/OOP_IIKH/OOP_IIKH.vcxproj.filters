@@ -27,9 +27,6 @@
     <ClInclude Include="txtReader.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Error.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>

@@ -38,123 +38,186 @@ private:
 	std::vector<Student> studentDB;
 	//DB index
 	std::vector<size_t> DBindex;
+	//SortingOption
+	int sortingOption;
 
+
+	//Sort By SorttingOption
+	void Sort();
 
 	/// Sorting Option
 
-	class SortOption_ID {
+	//Sort By ID
+	class SortingOption_ID {
 	public:
 		const StudentDB& DB;
-
-		SortOption_ID(const StudentDB& db) :DB(db) {}
+		//constructor
+		SortingOption_ID(const StudentDB& db) :DB(db) {}
+		//operator overriding to use function object
 		bool operator()(const size_t& i1, const size_t& i2);
 
 	};
 
+	//Sort by Name
 	class SortingOption_Name {
+	public:
 		const StudentDB& DB;
-
+		//constructor
 		SortingOption_Name(const StudentDB& db) : DB(db) {}
+		//operator overriding to use function object
 		bool operator()(const size_t& i1, const size_t& i2);
 	};
 
-	class SortingOption_AdmYear {
+	//Sort By BirthYear
+	class SortingOption_BirthYear {
+	public:
 		const StudentDB& DB;
-
-		SortingOption_AdmYear(const StudentDB& db) : DB(db) {}
+		//constructor
+		SortingOption_BirthYear(const StudentDB& db) : DB(db) {}
+		//operator overriding to use function object
 		bool operator()(const size_t& i1, const size_t& i2);
 	};
 
+	//Sort By DeptName
 	class SortingOption_DeptName {
+	public:
 		const StudentDB& DB;
+		//constructor
 		SortingOption_DeptName(const StudentDB& db) : DB(db) {}
+		//operator overriding to use function object
 		bool operator()(const size_t& i1, const size_t& i2);
 	};
 
-	void CheckName(std::string s) {
-		IsCharString(s);
+	void CheckValidity(Student& s);
 
-		if (s.size() > 15) throw DataBaseError(1);
+	void CheckName(std::string s);
 
-	}
-	void CheckValidity(Student& s) {
-		CheckName(s.GetName());
+	void CheckID(std::string s);
 
-
-	}
-
-
-
-public:
-
-	StudentDB() {
-
+	void CheckBirthYear(std::string s) {
+		CheckDigitString(s);
+		CheckStringLen(s, 4);
 	}
 
-
-
-
-
-	const std::vector<Student> GetDB() {
-		return studentDB;
+	void CheckTel(std::string s){
+		CheckDigitString(s);
+		CheckStringLen(s, 11);
 	}
-
-
 
 	
 
-	void IsCharString(std::string s) {
+	void CheckIDExist(std::string s) {
+		for (auto student : studentDB) {
+			if (student.GetID() == s) throw DataBaseError(0);
+		}
+	}
+
+	void CheckDigitString(std::string s) {
 		for (auto c : s) {
-			if ((!isalpha(c))&&(c!=' ')) throw DataBaseError(1);
+			if (!isdigit(c)) throw DataBaseError(1);
 		}
 		return;
 	}
 
-	/// setter method
-	void SetDB(std::vector<Student> db) {
-		this->studentDB = db;
+	void CheckCharString(std::string s) {
+		for (auto c : s) {
+			if ((!isalpha(c)) && (c != ' ')) throw DataBaseError(1);
+		}
+		return;
 	}
 
-	void Insert(Student& s) {
+	void CheckStringLen(std::string s, int len, int type = 0) {
+
+		switch (type) {
+		case 0:
+			if (s.length() != len) throw DataBaseError(1);
+			break;
+		case 1:
+			if (s.length() > len) throw DataBaseError(1);
+			break;
+		default:
+			break;
+		}
+	}
+
+public:
+
+	//constructor
+	StudentDB():sortingOption(0){}
+
+
+
+
+	/// Getter Method
+	
+	//Get DB Data
+	const std::vector<Student> GetDB() { return studentDB; }
+	//Get Index Data
+	const std::vector<size_t> GetIndex() { return DBindex; }
+
+
+
+
+	/// setter method
+
+	//Set DB Data
+	void SetDB(std::vector<Student> db) { this->studentDB = db; }
+
+
+
+	void Insert(Student *s) {
 		try{
-			CheckValidity(s);
+			CheckValidity(*s);
 		}
 		catch (DataBaseError& e) {
 			e.ErrorMessage();
+			delete s;
 			return;
 		}
 
 		//Insert ½ÇÇà
 
 		DBindex.push_back(studentDB.size());
-		studentDB.push_back(s);
+		studentDB.push_back(*s);
 
-		
+		Sort();
 	}
 
-	void SearchByName(std::string& s);
-	void SearchByID(std::string& s);
-	void SearchByAdmYear(std::string& s);
-	void SearchByDeptName(std::string& s);
-	
-	void Save();
-
-	
-
-	void Add(std::string s) {
-		Student *db = new Student(s);
-		
-		DBindex.push_back(studentDB.size());
-		studentDB.push_back(*db);
-	}
-
-	void array() {
-		for(auto i : DBindex){
-			std::cout << studentDB[i].GetID() << " ";
+	std::vector<Student> SearchByName(std::string& s) {
+		std::vector<Student> list;
+		for (auto i : DBindex) {
+			if (studentDB[i].GetName() == s) list.push_back(studentDB[i]);
 		}
+		return list;
 	}
+	std::vector<Student> SearchByID(std::string& s);
+	std::vector<Student> SearchByAdmYear(std::string& s);
+	std::vector<Student> SearchByDeptName(std::string& s);
+
 	
-	void SortByID() {
-		std::sort(DBindex.begin(), DBindex.end(), SortOption_ID(*this));
+
+
+	
+	
+
+	void SortByName() {
+		std::sort(DBindex.begin(), DBindex.end(), SortingOption_Name(*this));
+		sortingOption = 0;
 	}
+
+	void SortByID() {
+		std::sort(DBindex.begin(), DBindex.end(), SortingOption_ID(*this));
+		sortingOption = 1;
+	}
+
+
+	void SortByBirthYear() {
+		std::sort(DBindex.begin(), DBindex.end(), SortingOption_BirthYear(*this));
+		sortingOption = 2;
+	}
+	void SortByDeptName() {
+		std::sort(DBindex.begin(), DBindex.end(), SortingOption_DeptName(*this));
+		sortingOption = 3;
+	}
+
 };
