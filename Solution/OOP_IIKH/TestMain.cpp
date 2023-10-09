@@ -13,16 +13,25 @@
 
 
 int main(int argc, char* argv[]) {
-
+    
     Program program("a.txt");
+    program.Execute();
 
     //Program program(argv[1]);
-    program.Execute();
     
-    
+    /*
+    StudentDB studentDB;
 
-    
+    Student a = Student("sam safdhnkj");
+    Student c = Student("sam safdhasdasdasdasdasdnkj");
+    Student b = Student("sam safd1dhnkj");
+
+    studentDB.Insert(a);
+    studentDB.Insert(b);
+    studentDB.Insert(c);
+    */
     //End();
+
 
 
 }

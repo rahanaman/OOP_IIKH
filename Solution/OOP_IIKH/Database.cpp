@@ -11,8 +11,4 @@ bool StudentDB::SortingOption_Name::operator()(const size_t& i1, const size_t& i
 	return DB.studentDB[i1].GetName() < DB.studentDB[i2].GetName();
 }
 
-void StudentDB::Insert(Student& s){
-	
-}
-
 

@@ -9,6 +9,8 @@
 
 class DataBaseError : public Error {
 public:
+
+	DataBaseError(int e) : Error(e) {}
 	void ErrorMessage() {
 
 		switch (errorID) {
@@ -18,7 +20,7 @@ public:
 			break;
 			//Invalid Arrtibute Error
 		case 1:
-			std::cout << "Error : Invalid Error"<<std::endl;
+			std::cout << "Error : Invalid Attribute"<<std::endl;
 		default:
 			break;
 		}
@@ -29,15 +31,13 @@ public:
 
 
 
+
 class StudentDB {
 private:
 	//studentDB
 	std::vector<Student> studentDB;
 	//DB index
 	std::vector<size_t> DBindex;
-
-	void CheckValidity();
-
 
 
 	/// Sorting Option
@@ -54,7 +54,7 @@ private:
 	class SortingOption_Name {
 		const StudentDB& DB;
 
-		SortingOption_Name(const StudentDB& db): DB(db) {}
+		SortingOption_Name(const StudentDB& db) : DB(db) {}
 		bool operator()(const size_t& i1, const size_t& i2);
 	};
 
@@ -71,7 +71,17 @@ private:
 		bool operator()(const size_t& i1, const size_t& i2);
 	};
 
+	void CheckName(std::string s) {
+		IsCharString(s);
 
+		if (s.size() > 15) throw DataBaseError(1);
+
+	}
+	void CheckValidity(Student& s) {
+		CheckName(s.GetName());
+
+
+	}
 
 
 
@@ -80,12 +90,47 @@ public:
 	StudentDB() {
 
 	}
+
+
+
+
+
+	const std::vector<Student> GetDB() {
+		return studentDB;
+	}
+
+
+
+	
+
+	void IsCharString(std::string s) {
+		for (auto c : s) {
+			if ((!isalpha(c))&&(c!=' ')) throw DataBaseError(1);
+		}
+		return;
+	}
+
 	/// setter method
 	void SetDB(std::vector<Student> db) {
 		this->studentDB = db;
 	}
 
-	void Insert(Student& s);
+	void Insert(Student& s) {
+		try{
+			CheckValidity(s);
+		}
+		catch (DataBaseError& e) {
+			e.ErrorMessage();
+			return;
+		}
+
+		//Insert ½ÇÇà
+
+		DBindex.push_back(studentDB.size());
+		studentDB.push_back(s);
+
+		
+	}
 
 	void SearchByName(std::string& s);
 	void SearchByID(std::string& s);
