@@ -4,25 +4,27 @@
 #include<string>
 #include "Student.h"
 #include "DataBase.h"
-
-int main() {
-    StudentDB db;
-
-
-    db.Add("2");
-    db.Add("4");
-    db.Add("5");
-    db.Add("1");
-    db.Add("3");
-
-    db.array();
+#include "txtReader.h"
+#include "Program.h"
+#include "Error.h"
 
 
-    db.SortByID();
 
-    db.array();
-   
 
-    std::cout << std::endl;
+
+int main(int argc, char* argv[]) {
+
+    Program program("a.txt");
+
+    //Program program(argv[1]);
+    program.Execute();
     
+    
+
+    
+    //End();
+
+
 }
+
+
