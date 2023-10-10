@@ -33,12 +33,8 @@ private:
 	void save() { txtReader.save(db.GetDB()); }
 
 	//Get Input on Menu
-	int GetInput() {
-		int inputNum;
-		std::cin >> inputNum;
-		return inputNum;
-		system("CLS");
-	}
+	int GetInput();
+
 	///Menu
 	void MainMenu();
 	void InsertMenu();
