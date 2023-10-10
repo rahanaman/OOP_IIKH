@@ -24,7 +24,6 @@
     <ClInclude Include="Program.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="txtReader.h" />
-    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Database.cpp" />
