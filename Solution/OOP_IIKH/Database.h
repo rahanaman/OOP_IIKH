@@ -42,6 +42,10 @@ private:
 	int sortingOption;
 
 
+	///ConstValue
+	const int NAME_LEN = 15;
+	const int ID_LEN = 10;
+
 	//Sort By SorttingOption
 	void Sort();
 

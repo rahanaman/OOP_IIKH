@@ -18,10 +18,18 @@ private:
 	const int DEPT_LEN = 25;
 	const int BIRTH_LEN = 10;
 	const int TEL_LEN = 11;
+	///
+
 
 	//Initialize Program
-	void Init() { txtReader.Init(db); }
-	//Quit Program
+	void Init(){
+		std::vector<Student*> list = txtReader.Init(db);
+		for (auto s : list) {
+			db.Insert(s);
+		}
+	}
+
+	//Quit Program - save data in txt before quit Program
 	void EndProgram() { save(); exit(0); }
 
 	//Save Data - when quit Program

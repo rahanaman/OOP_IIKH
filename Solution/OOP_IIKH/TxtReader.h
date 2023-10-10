@@ -15,7 +15,8 @@ private:
 	std::string filepath;
 
 	
-	void Read(StudentDB& DB) {
+	std::vector<Student*> Read(StudentDB& DB) {
+		std::vector <Student*> list;
 		std::string str;
 		while (!file.eof()) {
 			std::getline(file, str);
@@ -23,9 +24,11 @@ private:
 			std::vector<std::string> atts = ParseString(str);
 			
 			Student* student = new Student(atts[0], atts[1], atts[2], atts[3], atts[4]);
-			DB.Insert(student);
+			list.push_back(student);
 		}
 		file.close();
+
+		return list;
 		//DB.SortByName();
 
 	}
@@ -72,10 +75,10 @@ private:
 
 public:
 
-	void Init(StudentDB& DB) {
+	std::vector<Student*> Init(StudentDB& DB) {
 		file.open(filepath, std::ios::in);
 		if (file.is_open()) {
-			Read(DB);
+			return Read(DB);
 		}
 	}
 
