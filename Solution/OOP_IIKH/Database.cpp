@@ -23,7 +23,7 @@ void StudentDB::CheckValidity(Student& s) {
 
 void StudentDB::CheckName(std::string s) {
 	CheckCharString(s);
-	CheckStringLen(s, 15, 1);
+	CheckStringLen(s, NAME_LEN, 1);
 }
 
 void StudentDB::CheckID(std::string s) {
