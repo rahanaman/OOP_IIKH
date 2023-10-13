@@ -1,0 +1,3 @@
+"LisaSimpson","2006303001","2000","ComputerEngineering","01012345678"
+"GildongHong","2004303077","2001","ComputerEngineering","01187651234"
+"GyuriKim","2022604112","2003","AI","01099030315"

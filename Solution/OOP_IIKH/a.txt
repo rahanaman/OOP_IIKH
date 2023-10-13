@@ -1,2 +1,0 @@
-"LisaSimpson","2006303001","2000","ComputerEngineering","01012345678"
-"GildongHong","2004303077","1999","ComputerEngineering","01187651234"
