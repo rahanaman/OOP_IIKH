@@ -2,7 +2,7 @@
 
 #include<iostream>
 
-
+//Base Error Class
 class Error{
 protected:
 	int errorID;
