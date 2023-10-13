@@ -157,7 +157,10 @@ void Program::Search_DeptName() {
 	std::cout << "Dept Name keyword? ";
 	std::string name; std::cin >> name;
 	std::cout << std::endl;
-	std::vector<Student> list = db.SearchByBirthYear(name);
+	std::vector<Student> list = db.SearchByDeptName(name);
+	if (list.size() == 0) {
+		std::cout << "No Data"; return;
+	}
 	Outputformat();
 	for (auto s : list) {
 		ListStudent(s);
