@@ -1,0 +1,7 @@
+Function 'multiple' is a function that is only used in * operation. It means users don't have to know the presence of the fuction. So we make it private fuction, to prevent access of user.
+
+Similarly, Function 'abs' is used in '-' function. However, absolute value is useful when we deal with integer data. So, we thought 'abs' would be used to users, so we make it as public fuction.
+
+Also, sign data(which define positive or negative) is also private. Users can only access overloaded operations and public methods, so sign data change only occurs in those methods. It clarify that 'thesign' data is reliable and safe.
+
+When we make operation function, we overload existing fuction (such as '+','-', and '<'). If we want to expand the operation into operation with other data type like double, we can use overloading as well. Thanks to polymorphism of operation method, so it would be easier to write and use when we write code.
